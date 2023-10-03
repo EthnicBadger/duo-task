@@ -17,9 +17,9 @@ metadata:
   name: nginx-service
 spec:
   selector:
-    app: flask-app
+    app: nginx
   ports: 
   - protocol: TCP
-    port: 5500
-    targetPort: 5500
-  type: ClusterIP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
