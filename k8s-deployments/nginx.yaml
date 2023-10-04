@@ -34,5 +34,6 @@ spec:
       containers:
       - name: nginx-container
         image: ethnicbadger/duo-nginx:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80

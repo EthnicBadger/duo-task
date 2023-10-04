@@ -34,5 +34,6 @@ spec:
       containers:
       - name: flask-container
         image: ethnicbadger/duo-flask:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5500
