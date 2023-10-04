@@ -19,12 +19,12 @@ data:
   nginx.conf: |
     events {}
     http {
-    server {
-      listen 80;
-      location / {
-        proxy_pass http://flask-app:5500;
+        server {
+            listen 80;
+            location / {
+                proxy_pass http://flask-app:5500;
+            }
         }
-      }
     }
 ---
 apiVersion: apps/v1
