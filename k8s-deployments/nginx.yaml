@@ -11,6 +11,22 @@ spec:
     targetPort: 80
   type: LoadBalancer
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata: nginx-config
+  name: 
+data:
+  nginx.conf: |
+    events {}
+    http {
+    server {
+      listen 80;
+      location / {
+        proxy_pass http://flask-app:5500;
+        }
+      }
+    }
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -31,9 +47,16 @@ spec:
       labels:
         app: nginx
     spec:
+      volumes:
+      - name: nginx-config-vol
+        configMap: 
+          name: nginx-config
       containers:
       - name: nginx-container
-        image: ethnicbadger/duo-nginx:latest
+        image: nginx:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-config-vol
+          mountPath: /etc/nginx
