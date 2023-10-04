@@ -13,8 +13,8 @@ spec:
 ---
 apiVersion: v1
 kind: ConfigMap
-metadata: nginx-config
-  name: 
+metadata: 
+  name: nginx-config
 data:
   nginx.conf: |
     events {}
