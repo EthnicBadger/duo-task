@@ -60,3 +60,4 @@ spec:
         volumeMounts:
         - name: nginx-config-vol
           mountPath: /etc/nginx
+---
