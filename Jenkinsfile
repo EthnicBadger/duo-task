@@ -22,7 +22,7 @@ pipeline {
                 '''
             }
         }
-stage('Push Images') {
+        stage('Push Images') {
             steps {
                 sh ''' 
                 echo "Hello, Starting to push the images to DockerHub"
@@ -35,7 +35,7 @@ stage('Push Images') {
             }
         }
 
-stage('clean up Jenkins') {
+        stage('clean up Jenkins') {
             steps {
                 sh ''' 
                 echo "Hello, Starting clean up of Jenkins"
@@ -50,11 +50,12 @@ stage('clean up Jenkins') {
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is still working"
-
                 # NOW WE'RE GOING TO DEPLOY THE CONTAINERS BASED ON THE IMAGES GENERATED
-
-                kubectl
-                
+                cd ~
+                cd ./duo-task 
+                git pull
+                cd ./k8s-deployments
+                kubectl rollout restart deployment --namespace=pre-prod flask-deployment
                 '''
             }
         }
